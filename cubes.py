@@ -1,6 +1,10 @@
 import bpy
 import requests
 
+#Delete all existing objects
+bpy.ops.object.select_all(action='SELECT')
+bpy.ops.object.delete(use_global=False)
+
 # Set initial values
 xpos = 0
 ypos = 0
@@ -19,6 +23,7 @@ for depth in range(5):
         for x in range(0,10):
             xpos = xpos + 1.5
             
+            # Increase height and depth of every odd cube drawn
             if (x % 2) == 0:
                 zpos = zpos_base + 0.5
                 ypos = ypos_base + 0.5
@@ -28,7 +33,7 @@ for depth in range(5):
             
             # Draw cube or sphere - uncomment as required. (or not)
             bpy.ops.mesh.primitive_cube_add(size=0.5, enter_editmode=False, location=(xpos, ypos, zpos))
-            bpy.ops.mesh.primitive_uv_sphere_add(radius=0.3, enter_editmode=False, location=(xpos, ypos, zpos +0.0))
+            #bpy.ops.mesh.primitive_uv_sphere_add(radius=0.3, enter_editmode=False, location=(xpos, ypos, zpos +0.0))
 
         # Increment Z access after for next row    
         zpos_base = zpos_base + 2
